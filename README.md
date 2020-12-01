@@ -68,6 +68,7 @@ sudo vi context.xml
 ~~~
 
 หมายเหตุ: คำสั่ง allow="^.*$" จากคำสั่งด้านบน จะทำไห้สามารถเข้าไปใช้งานหน้าManagerและHost-Managerได้จากทุก IP Addresses 
+หากไม่ได้แก้ไขไฟล์ context.xml ตามขั้นตอนด้านบน จะไม่สามารถเข้าเมนู Manager App และ Host Manager ได้
 
 6.พิมพ์คำสั่งเพื่อสร้างไฟล์ tomcat service เพื่อเรียกใช้งาน tomcat
 ~~~
@@ -112,8 +113,12 @@ $ sudo systemctl enable tomcat
 $ sudo systemctl start tomcat
 ~~~
 หมายเหตุ
-หากไม่ได้แก้ไขไฟล์ context.xml ที่อยู่ใน 
+หากไม่ได้แก้ไขไฟล์ context.xml ที่อยู่ใน
+~~~
 path: /opt/tomcat/webapps/host-manager/META-INF/context.xml
+~~~
 กับ
+~~~
 path: /opt/tomcat/webapps/manager/META-INF/context.xml
+~~~
 จะไม่สามารถเข้าเมนู Manager App และ Host Manager ได้
