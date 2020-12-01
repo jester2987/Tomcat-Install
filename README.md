@@ -23,28 +23,51 @@ $ wget https://downloads.apache.org/tomcat/tomcat-9/v9.0.40/bin/apache-tomcat-9.
 $ tar xzf apache-tomcat-9.0.40.tar.gz
 $ sudo mv apache-tomcat-9.0.40/* /opt/tomcat/
 ~~~
-4.พิมพ์คำสั่งเพื่อสร้างไฟล์ manager.xml
+4.สร้าง user ในการเข้าใช้ tomcat(ใช้ในการ Login เข้าใช้หน้าเว็ปไซต์ของ tomcat)
 ~~~
-$ sudo vi /opt/tomcat/conf/Catalina/localhost/manager.xml
+sudo vi /opt/tomcat/conf/tomcat-users.xml
 ~~~
-(4.1)เพิ่มคำสั่ง
-~~~xml
-    <Context privileged="true" antiResourceLocking="false"
-    docBase="{catalina.home}/webapps/manager">
-    <Valve className="org.apache.catalina.valves.RemoteAddrValve" allow="^.*$" />
-    </Context>
+เพิ่มคำสั่ง
 ~~~
-5.พิมพ์คำสั่งเพื่อสร้างไฟล์ host-manager.xml
+<role rolename="manager-gui" />
+<user username="ชื่อuser" password="รหัสผ่านที่ต้องการ" roles="manager-gui" />
+<role rolename="admin-gui" />
+<user username="ชื่อuser" password="รหัสผ่านที่ต้องการ" roles="manager-gui,admin-gui" />
 ~~~
-$ sudo vi /opt/tomcat/conf/Catalina/localhost/host-manager.xml
+5.การตั้งค่าไฟล์ manager และ host-manager
+
+(5.1)ไปที่ Path ไฟล์(การที่จะเข้าPathไฟล์ดังกล่าวได้จะต้องให้สิทธิ์การเข้าถึงก่อน)
 ~~~
-(5.1)เพิ่มคำสั่ง
+cd /opt/tomcat/webapps/host-manager/META-INF
+~~~
+(5.2)แก้ไขไฟล์โดยพิมพ์คำสั่ง
+~~~
+sudo vi context.xml
+~~~
+(5.3)ใส่คำสั่ง
 ~~~xml
     <Context privileged="true" antiResourceLocking="false"
     docBase="${catalina.home}/webapps/host-manager">
     <Valve className="org.apache.catalina.valves.RemoteAddrValve" allow="^.*$" />
     </Context>
 ~~~
+(5.4)ไปที่ Path ไฟล์
+~~~
+cd /opt/tomcat/webapps/manager/META-INF/
+~~~
+(5.5)แก้ไขไฟล์โดยพิมพ์คำสั่ง
+~~~
+sudo vi context.xml
+~~~
+(5.6)ใส่คำสั่ง
+~~~xml
+    <Context privileged="true" antiResourceLocking="false"
+    docBase="${catalina.home}/webapps/host-manager">
+    <Valve className="org.apache.catalina.valves.RemoteAddrValve" allow="^.*$" />
+    </Context>
+~~~
+หมายเหตุ: ในบรรทัดที่65 allow="^.*$" จากคำสั่งด้านบน จะทำไห้สามารถเข้าไปใช้งานหน้าManagerและHost-Managerได้จากทุก IP Addresses 
+
 6.พิมพ์คำสั่งเพื่อสร้างไฟล์ tomcat service เพื่อเรียกใช้งาน tomcat
 ~~~
 $ sudo vi /etc/systemd/system/tomcat.service
@@ -74,7 +97,7 @@ ExecStop=/opt/tomcat/bin/shutdown.sh
 [Install]
 WantedBy=multi-user.target
 ~~~
-8.พิมพ์คำสั่งที่ใช้ในการยืนยันการเปลี่ยนค่าและรีโหลดการตั้งค่าserviceของtomcat
+6.พิมพ์คำสั่งที่ใช้ในการยืนยันการเปลี่ยนค่าและรีโหลดการตั้งค่าserviceของtomcat
 ~~~
 $ sudo systemctl daemon-reload
 ~~~
@@ -87,6 +110,9 @@ $ sudo chown -R tomcat:tomcat /opt/tomcat/
 $ sudo systemctl enable tomcat
 $ sudo systemctl start tomcat
 ~~~
-คำสั่งต่างที่ใช้กับ tomcat
-คำสั่งเปิดใช้งาน
-$ sudo systemctl start tomcat
+หมายเหตุ
+หากไม่ได้แก้ไขไฟล์ context.xml ที่อยู่ใน path 
+/opt/tomcat/webapps/host-manager/META-INF/context.xml
+กับ
+/opt/tomcat/webapps/manager/META-INF/context.xml
+จะไม่สามารถเข้าเมนู Manager App และ Host Manager ได้
