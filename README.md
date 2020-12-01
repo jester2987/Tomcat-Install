@@ -66,7 +66,8 @@ sudo vi context.xml
     <Valve className="org.apache.catalina.valves.RemoteAddrValve" allow="^.*$" />
     </Context>
 ~~~
-หมายเหตุ: ในบรรทัดที่65 allow="^.*$" จากคำสั่งด้านบน จะทำไห้สามารถเข้าไปใช้งานหน้าManagerและHost-Managerได้จากทุก IP Addresses 
+
+หมายเหตุ: คำสั่ง allow="^.*$" จากคำสั่งด้านบน จะทำไห้สามารถเข้าไปใช้งานหน้าManagerและHost-Managerได้จากทุก IP Addresses 
 
 6.พิมพ์คำสั่งเพื่อสร้างไฟล์ tomcat service เพื่อเรียกใช้งาน tomcat
 ~~~
@@ -111,8 +112,8 @@ $ sudo systemctl enable tomcat
 $ sudo systemctl start tomcat
 ~~~
 หมายเหตุ
-หากไม่ได้แก้ไขไฟล์ context.xml ที่อยู่ใน path 
-/opt/tomcat/webapps/host-manager/META-INF/context.xml
+หากไม่ได้แก้ไขไฟล์ context.xml ที่อยู่ใน 
+path: /opt/tomcat/webapps/host-manager/META-INF/context.xml
 กับ
-/opt/tomcat/webapps/manager/META-INF/context.xml
+path: /opt/tomcat/webapps/manager/META-INF/context.xml
 จะไม่สามารถเข้าเมนู Manager App และ Host Manager ได้
