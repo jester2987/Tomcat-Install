@@ -2,6 +2,7 @@
 By Command Linux Ubuntu 20.04 LTS
 
 ## Start
+#ลง JaVAJDK
 1.พิมพ์คำสั่งเพื่อ ทำการติดตั้งJava (Apache tomcat จำเป็นต้องใช้ Java ในการทำงานที่ไม่ต่ำกว่าเวอชั่น 8)
 ~~~
 $ sudo apt install openjdk-11-jdk
@@ -10,48 +11,55 @@ $ sudo apt install openjdk-11-jdk
 ~~~
 $ java –version
 ~~~
-2.ทำการ Create user tomcat โดยพิมพ์คำสั่ง
-~~~
-sudo useradd -m -d /opt/tomcat -U -s /bin/false tomcat
-~~~
-3.พิมพ์คำสั่งเพื่อดาวโหลดไฟล์Tomcat //ขั้นตอนการติดตั้ง
+
+ขั้นตอนการดาวโหลและติดตั้งและ Tomcat
+
+พิมพ์คำสั่งเพื่อดาวโหลดไฟล์ Tomcat
 ~~~
 $ wget https://downloads.apache.org/tomcat/tomcat-9/v9.0.40/bin/apache-tomcat-9.0.40.tar.gz
 ~~~
-(3.1) พิมพ์คำสั่งเพื่อแตกไฟล์ และ ย้ายไฟล์ไปยัง Path ที่กำหนด //ขั้นตอนการติดตั้ง
+พิมพ์คำสั่งเพื่อแตกไฟล์ และ ย้ายไฟล์ไปยัง Path ที่กำหนด
 ~~~
 $ tar xzf apache-tomcat-9.0.40.tar.gz
 $ sudo mv apache-tomcat-9.0.40/* /opt/tomcat/
 ~~~
-4.สร้าง user ในการเข้าใช้ tomcat (ใช้ในการ Login เข้าใช้หน้าเว็ปไซต์ของ tomcat) //สร้างUser
+ทำการ Create user tomcat โดยพิมพ์คำสั่ง
+~~~
+sudo useradd -m -d /opt/tomcat -U -s /bin/false tomcat
+~~~
+
+การตั้งค่าไฟล์ XML ต่างๆ
+
+สร้าง user ในการเข้าใช้ tomcat (ใช้ในการ Login เข้าใช้หน้าเว็ปไซต์ของ tomcat)
 ~~~
 sudo vi /opt/tomcat/conf/tomcat-users.xml
 ~~~
-เพิ่มคำสั่ง //เพิ่มคำสั่ง XML
+เพิ่มคำสั่ง
 ~~~
 <role rolename="manager-gui" />
 <user username="ชื่อuser" password="รหัสผ่านที่ต้องการ" roles="manager-gui" />
 <role rolename="admin-gui" />
 <user username="ชื่อuser" password="รหัสผ่านที่ต้องการ" roles="manager-gui,admin-gui" />
 ~~~
-5.การตั้งค่าไฟล์ manager และ host-manager
 
-(5.1)แก้ไขไฟล์
+การตั้งค่าไฟล์ manager และ host-manager
+
+ไปที่ Path ไฟล์
 ~~~
 sudo vi /opt/tomcat/webapps/host-manager/META-INF/context.xml
 ~~~
-(5.2)ใส่คำสั่ง //เพิ่มคำสั่ง XML
+เพิ่มคำสั่ง
 ~~~xml
     <Context privileged="true" antiResourceLocking="false"
     docBase="${catalina.home}/webapps/host-manager">
     <Valve className="org.apache.catalina.valves.RemoteAddrValve" allow="^.*$" />
     </Context>
 ~~~
-(5.4)ไปที่ Path ไฟล์
+ไปที่ Path ไฟล์
 ~~~
 sudo vi /opt/tomcat/webapps/manager/META-INF/context.xml
 ~~~
-(5.6)ใส่คำสั่ง //เพิ่มคำสั่ง XML
+เพิ่มคำสั่ง
 ~~~xml
     <Context privileged="true" antiResourceLocking="false"
     docBase="${catalina.home}/webapps/host-manager">
@@ -59,14 +67,13 @@ sudo vi /opt/tomcat/webapps/manager/META-INF/context.xml
     </Context>
 ~~~
 
-หมายเหตุ: คำสั่ง allow="^.*$" จากคำสั่งด้านบน จะทำไห้สามารถเข้าไปใช้งานหน้าManagerและHost-Managerได้จากทุก IP Addresses 
-หากไม่ได้แก้ไขไฟล์ context.xml ตามขั้นตอนด้านบน จะไม่สามารถเข้าเมนู Manager App และ Host Manager ได้
+การสร้าง Service tomcat
 
-6.พิมพ์คำสั่งเพื่อสร้างไฟล์ tomcat service เพื่อเรียกใช้งาน tomcat //สร้าง Service 
+1.พิมพ์คำสั่งเพื่อสร้างไฟล์ tomcat service เพื่อเรียกใช้งาน tomcat
 ~~~
 $ sudo vi /etc/systemd/system/tomcat.service
 ~~~
-(6.1)เพิ่มคำสั่งเพื่อตั้งค่าการใช้งานserviceของtomcat //สร้าง Service 
+1.1 เพิ่มคำสั่งเพื่อตั้งค่าการใช้งาน service ของ tomcat
 ~~~
 [Unit]
 Description=Tomcat
@@ -91,7 +98,7 @@ ExecStop=/opt/tomcat/bin/shutdown.sh
 [Install]
 WantedBy=multi-user.target
 ~~~
-6.พิมพ์คำสั่งที่ใช้ในการยืนยันการเปลี่ยนค่าและรีโหลดการตั้งค่าserviceของtomcat
+6.พิมพ์คำสั่งที่ใช้ในการยืนยันการเปลี่ยนค่าและรีโหลดการตั้งค่า service ของtomcat
 ~~~
 $ sudo systemctl daemon-reload
 ~~~
