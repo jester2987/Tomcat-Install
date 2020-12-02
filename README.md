@@ -36,10 +36,10 @@ sudo vi /opt/tomcat/conf/tomcat-users.xml
 ~~~
 เพิ่มคำสั่ง
 ~~~xml
-<role rolename="manager-gui" />
-<user username="ชื่อuser" password="รหัสผ่านที่ต้องการ" roles="manager-gui" />
-<role rolename="admin-gui" />
-<user username="ชื่อuser" password="รหัสผ่านที่ต้องการ" roles="manager-gui,admin-gui" />
+    <role rolename="manager-gui" />
+    <user username="ชื่อuser" password="รหัสผ่านที่ต้องการ" roles="manager-gui" />
+    <role rolename="admin-gui" />
+    <user username="ชื่อuser" password="รหัสผ่านที่ต้องการ" roles="manager-gui,admin-gui" />
 ~~~
 
 การตั้งค่าไฟล์ manager และ host-manager
