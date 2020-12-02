@@ -2,8 +2,11 @@
 By Command Linux Ubuntu 20.04 LTS
 
 ## Start
+
 ขั้นตอนการลง JaVaJDK
+
 1.พิมพ์คำสั่งเพื่อ ทำการติดตั้ง Java (Apache tomcat จำเป็นต้องใช้ Java ในการทำงานที่ไม่ต่ำกว่าเวอชั่น 8)
+
 ~~~
 $ sudo apt install openjdk-11-jdk
 ~~~
