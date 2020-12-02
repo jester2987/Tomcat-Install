@@ -7,7 +7,7 @@ By Command Linux Ubuntu 20.04 LTS
 ~~~
 $ sudo apt install openjdk-11-jdk
 ~~~
-(1.1)เมื่อติดตั้งเสร็จ พิมพ์คำสั่งเพื่อเช็คเวอชั่นของ Java 
+1.1 เมื่อติดตั้งเสร็จ พิมพ์คำสั่งเพื่อเช็คเวอชั่นของ Java 
 ~~~
 $ java –version
 ~~~
