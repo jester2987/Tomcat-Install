@@ -111,13 +111,6 @@ $ sudo chown -R tomcat:tomcat /opt/tomcat/
 $ sudo systemctl enable tomcat
 $ sudo systemctl start tomcat
 ~~~
-หมายเหตุ
-หากไม่ได้แก้ไขไฟล์ context.xml ที่อยู่ใน
-~~~
-path: /opt/tomcat/webapps/host-manager/META-INF/context.xml
-~~~
-กับ
-~~~
-path: /opt/tomcat/webapps/manager/META-INF/context.xml
-~~~
-จะไม่สามารถเข้าเมนู Manager App และ Host Manager ได้
+#หมายเหตุ
+หากไม่ได้แก้ไขไฟล์ context.xml ที่อยู่ใน host-manager กับ manager
+จะไม่สามารถเข้าเมนู Manager App และ Host Manager ได้จากภายนอก
