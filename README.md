@@ -10,14 +10,14 @@ By Command Linux Ubuntu 20.04 LTS
 ~~~
 $ sudo apt install openjdk-11-jdk
 ~~~
-1.1 เมื่อติดตั้งเสร็จ พิมพ์คำสั่งเพื่อเช็คเวอชั่นของ Java 
+1.1 เมื่อติดตั้งเสร็จ พิมพ์คำสั่งเพื่อเช็คเวอร์ชันของ Java 
 ~~~
 $ java –version
 ~~~
 
-ขั้นตอนการดาวโหลและติดตั้งและ Tomcat
+ขั้นตอนการดาวน์โหลดและติดตั้งและ Tomcat
 
-พิมพ์คำสั่งเพื่อดาวโหลดไฟล์ Tomcat
+พิมพ์คำสั่งเพื่อดาวน์โหลดไฟล์ Tomcat
 ~~~
 $ wget https://downloads.apache.org/tomcat/tomcat-9/v9.0.40/bin/apache-tomcat-9.0.40.tar.gz
 ~~~
@@ -69,6 +69,7 @@ sudo vi /opt/tomcat/webapps/manager/META-INF/context.xml
     <Valve className="org.apache.catalina.valves.RemoteAddrValve" allow="^.*$" />
     </Context>
 ~~~
+หมายเหตุ:
 
 การสร้าง Service tomcat
 
@@ -105,6 +106,7 @@ WantedBy=multi-user.target
 ~~~
 $ sudo systemctl daemon-reload
 ~~~
+หมายเหตุ:
 1.3 พิมพ์คำสั่งเพื่อย้ายสิทธิ์เพื่อเรียกใช้ service ของ tomcat
 ~~~
 $ sudo chown -R tomcat:tomcat /opt/tomcat/
