@@ -98,15 +98,15 @@ ExecStop=/opt/tomcat/bin/shutdown.sh
 [Install]
 WantedBy=multi-user.target
 ~~~
-6.พิมพ์คำสั่งที่ใช้ในการยืนยันการเปลี่ยนค่าและรีโหลดการตั้งค่า service ของ tomcat
+1.2 พิมพ์คำสั่งที่ใช้ในการยืนยันการเปลี่ยนค่าและรีโหลดการตั้งค่า service ของ tomcat
 ~~~
 $ sudo systemctl daemon-reload
 ~~~
-7.พิมพ์คำสั่งเพื่อย้ายสิทธิ์เพื่อเรียกใช้ service ของ tomcat
+1.3 พิมพ์คำสั่งเพื่อย้ายสิทธิ์เพื่อเรียกใช้ service ของ tomcat
 ~~~
 $ sudo chown -R tomcat:tomcat /opt/tomcat/
 ~~~
-8.จากนั้นพิมพ์คำสั่งที่ใช้ในการเปิดใช้งาน Tomcat
+1.4 จากนั้นพิมพ์คำสั่งที่ใช้ในการเปิดใช้งาน Tomcat
 ~~~
 $ sudo systemctl enable tomcat
 $ sudo systemctl start tomcat
