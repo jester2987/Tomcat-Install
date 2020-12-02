@@ -35,7 +35,7 @@ sudo useradd -m -d /opt/tomcat -U -s /bin/false tomcat
 sudo vi /opt/tomcat/conf/tomcat-users.xml
 ~~~
 เพิ่มคำสั่ง
-~~~
+~~~xml
 <role rolename="manager-gui" />
 <user username="ชื่อuser" password="รหัสผ่านที่ต้องการ" roles="manager-gui" />
 <role rolename="admin-gui" />
