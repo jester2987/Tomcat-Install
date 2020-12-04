@@ -102,11 +102,10 @@ ExecStop=/opt/tomcat/bin/shutdown.sh
 [Install]
 WantedBy=multi-user.target
 ~~~
-1.2 พิมพ์คำสั่งที่ใช้ในการยืนยันการเปลี่ยนค่าและรีโหลดการตั้งค่า service ของ tomcat
+1.2 พิมพ์คำสั่งที่ใช้ในการยืนยันการเปลี่ยนค่าและรีโหลดการตั้งค่า service ของระบบ
 ~~~
 $ sudo systemctl daemon-reload
 ~~~
-หมายเหตุ:
 1.3 พิมพ์คำสั่งเพื่อย้ายสิทธิ์เพื่อเรียกใช้ service ของ tomcat
 ~~~
 $ sudo chown -R tomcat:tomcat /opt/tomcat/
@@ -116,6 +115,15 @@ $ sudo chown -R tomcat:tomcat /opt/tomcat/
 $ sudo systemctl enable tomcat
 $ sudo systemctl start tomcat
 ~~~
+#หมายเหตุ
+คำสั่ง systemctl enable เป็นคำสั่งให้ service ทำงานทุกครั้งหลังจาก boot เครื่อง
+คำสั่ง systemctl Start เปิดใช้งาน tomcat
+#คำสั่งใช้งาน Service เพิ่มเติมเติม
+คำสั่งใช้ restart tomcat หลังจากมีการตั้งค่าไฟล์
+~~~
+$ sudo systemctl restart tomcat
+~~~
+
 #หมายเหตุ
 หากไม่ได้แก้ไขไฟล์ context.xml ที่อยู่ใน host-manager กับ manager
 จะไม่สามารถเข้าเมนู Manager App และ Host Manager ได้จากภายนอก
