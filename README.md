@@ -6,7 +6,8 @@ By Command Linux Ubuntu 20.04 LTS
 ขั้นตอนการลง Java-JDK
 
 1.พิมพ์คำสั่งเพื่อ ทำการติดตั้ง Java (Apache tomcat จำเป็นต้องใช้ Java ในการทำงานที่ไม่ต่ำกว่าเวอร์ชัน 8)
-หมายเหตุ:ผู้ทำคู่มือใช้ เวอร์ชัน 11 
+
+หมายเหตุ:ผู้ทำคู่มือใช้ เวอร์ชัน 11 หาก
 ~~~
 $ sudo apt install openjdk-11-jdk
 ~~~
@@ -27,11 +28,11 @@ OpenJDK 64-Bit Server VM (build 11.0.9.1+1-Ubuntu-0ubuntu1.20.04, mixed mode, sh
 ~~~
 $ wget https://downloads.apache.org/tomcat/tomcat-9/v9.0.40/bin/apache-tomcat-9.0.40.tar.gz
 ~~~
-สร้างโฟลเดอร์ tomcat เพื่อใช้ย้ายไฟล์
+หลังจากดาวน์โหลดไฟล์ tomcat พิมพ์คำสั่งเพื่อสร้างโฟลเดอร์ tomcat เพื่อใช้ย้ายไฟล์
 ~~~
-sudo mkdir /opt/tomcat
+$ sudo mkdir /opt/tomcat
 ~~~
-พิมพ์คำสั่งเพื่อแตกไฟล์ และ ย้ายไฟล์ไปยัง Path ที่กำหนด
+พิมพ์คำสั่งเพื่อแตกไฟล์ และ ย้ายไฟล์ไปยัง Path ที่สร้างโฟลเดอร์ไว้
 ~~~
 $ tar xzf apache-tomcat-9.0.40.tar.gz
 $ sudo mv apache-tomcat-9.0.40/* /opt/tomcat/
@@ -40,6 +41,13 @@ $ sudo mv apache-tomcat-9.0.40/* /opt/tomcat/
 ~~~
 sudo useradd -m -d /opt/tomcat -U -s /bin/false tomcat
 ~~~
+หมายเหตุ:หากแสดง
+~~~
+useradd: warning: the home directory /opt/tomcat already exists.
+useradd: Not copying any file from skel directory into it.
+~~~
+userมีอยู่แล้ว
+
 
 การตั้งค่าไฟล์ XML ต่างๆ
 
@@ -119,11 +127,20 @@ $ sudo systemctl daemon-reload
 ~~~
 1.3 พิมพ์คำสั่งเพื่อย้ายสิทธิ์เพื่อเรียกใช้ service ของ tomcat
 ~~~
-$ sudo chown -R tomcat:tomcat /opt/tomcat/
+$ sudo chown -R tomcat:tomcat /opt/tomcat
 ~~~
 1.4 จากนั้นพิมพ์คำสั่งที่ใช้ในการเปิดใช้งาน Tomcat
 ~~~
 $ sudo systemctl enable tomcat
+~~~
+จะแสดง
+~~~
+Created symlink /etc/systemd/system/multi-user.target.wants/tomcat.service → /etc/systemd/system/tomcat.service.
+~~~
+หมายเหตุ:เมื่อใช้คำสั่ง $ sudo systemctl enable tomcat
+
+พิมพ์คำสั่งเพื่อเปิดการใชงาน tomcat
+~~~
 $ sudo systemctl start tomcat
 ~~~
 #หมายเหตุ
