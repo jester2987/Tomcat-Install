@@ -15,7 +15,7 @@ $ sudo apt install openjdk-11-jdk
 ~~~
 $ java –version
 ~~~
-จะแสดง
+จะแสดงข้อมูลเวอร์ชันของ Java 
 ~~~
 openjdk version "11.0.9.1" 2020-11-04
 OpenJDK Runtime Environment (build 11.0.9.1+1-Ubuntu-0ubuntu1.20.04)
@@ -41,12 +41,11 @@ $ sudo mv apache-tomcat-9.0.40/* /opt/tomcat/
 ~~~
 sudo useradd -m -d /opt/tomcat -U -s /bin/false tomcat
 ~~~
-หมายเหตุ:หากแสดง
+หมายเหตุ:หากแสดงข้อความด้านล่าง usrt ได้ถูกสร้างไว้แล้วหรือมีอยู่แล้ว
 ~~~
 useradd: warning: the home directory /opt/tomcat already exists.
 useradd: Not copying any file from skel directory into it.
 ~~~
-userมีอยู่แล้ว
 
 
 การตั้งค่าไฟล์ XML ต่างๆ
@@ -121,13 +120,13 @@ ExecStop=/opt/tomcat/bin/shutdown.sh
 [Install]
 WantedBy=multi-user.target
 ~~~
-1.2 พิมพ์คำสั่งที่ใช้ในการยืนยันการเปลี่ยนค่าและรีโหลดการตั้งค่า service ของระบบ
+1.2 พิมพ์คำสั่งที่ใช้ในการยืนยันการปรับเปลี่ยนการตั้งค่าและรีโหลดการตั้งค่า service ของระบบ
 ~~~
 $ sudo systemctl daemon-reload
 ~~~
-1.3 พิมพ์คำสั่งเพื่อย้ายสิทธิ์เพื่อเรียกใช้ service ของ tomcat
+1.3 พิมพ์คำสั่งเพื่อย้ายสิทธิ์ การเรียกใช้ service และ การเรียกใช้ไฟล์ต่างๆของ tomcat
 ~~~
-$ sudo chown -R tomcat:tomcat /opt/tomcat
+$ sudo chown -R tomcat:tomcat /opt/tomcat/
 ~~~
 1.4 จากนั้นพิมพ์คำสั่งที่ใช้ในการเปิดใช้งาน Tomcat
 ~~~
@@ -146,11 +145,15 @@ $ sudo systemctl start tomcat
 #หมายเหตุ
 คำสั่ง systemctl enable เป็นคำสั่งให้ service ทำงานทุกครั้งหลังจาก reboot เครื่อง
 
-คำสั่ง systemctl start เปิดใช้งาน tomcat
+คำสั่ง systemctl start ใช้ในการ เปิดใช้งาน tomcat
 
 #คำสั่งใช้งาน Service เพิ่มเติมเติม
 
-คำสั่งใช้ restart tomcat หลังจากมีการตั้งค่าไฟล์
+คำสั่งใช้ restart tomcat หลังจากมีการตั้งค่าไฟล์.XML
 ~~~
 $ sudo systemctl restart tomcat
+~~~
+คำสั่งปิดการใช้งาน tomcat
+~~~
+$ sudo systemctl stop tomcat
 ~~~
