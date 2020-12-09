@@ -5,9 +5,9 @@ By Command Linux Ubuntu 20.04 LTS
 
 ขั้นตอนการลง Java-JDK
 
-1.พิมพ์คำสั่งเพื่อ ทำการติดตั้ง Java (Apache tomcat จำเป็นต้องใช้ Java ในการทำงานที่ไม่ต่ำกว่าเวอร์ชัน 8)
+1.พิมพ์คำสั่งเพื่อ ทำการติดตั้ง Java (Apache tomcat จำเป็นต้องใช้ Java ในการทำงานที่สูงกว่าเวอร์ชัน 8 ขึ้นไป)
 
-หมายเหตุ:ผู้ทำคู่มือใช้ เวอร์ชัน 11 หาก
+หมายเหตุ:ผู้ทำคู่มือใช้ เวอร์ชัน 11
 ~~~
 $ sudo apt install openjdk-11-jdk
 ~~~
@@ -19,7 +19,7 @@ $ java –version
 ~~~
 openjdk version "11.0.9.1" 2020-11-04
 OpenJDK Runtime Environment (build 11.0.9.1+1-Ubuntu-0ubuntu1.20.04)
-OpenJDK 64-Bit Server VM (build 11.0.9.1+1-Ubuntu-0ubuntu1.20.04, mixed mode, sh                                                                             aring)
+OpenJDK 64-Bit Server VM (build 11.0.9.1+1-Ubuntu-0ubuntu1.20.04, mixed mode, sh                                                                             
 ~~~
 
 ขั้นตอนการดาวน์โหลดและติดตั้งและ Tomcat
@@ -46,7 +46,6 @@ sudo useradd -m -d /opt/tomcat -U -s /bin/false tomcat
 useradd: warning: the home directory /opt/tomcat already exists.
 useradd: Not copying any file from skel directory into it.
 ~~~
-
 
 การตั้งค่าไฟล์ XML ต่างๆ
 
@@ -86,8 +85,11 @@ sudo vi /opt/tomcat/webapps/manager/META-INF/context.xml
     <Valve className="org.apache.catalina.valves.RemoteAddrValve" allow="^.*$" />
     </Context>
 ~~~
-หมายเหตุ:หากไม่ได้แก้ไขไฟล์ context.xml ที่อยู่ใน host-manager กับ manager
+หมายเหตุ:
+- หากไม่ได้แก้ไขไฟล์ context.xml ที่อยู่ใน host-manager กับ manager
 จะไม่สามารถเข้าเมนู Manager App และ Host Manager ได้จากภายนอก
+- การแก้ไขไฟล์ .xml ต่างๆ หรือ การเข้า Path ไฟล์ต่างๆ อาจมีการติดสิทธิ์การเข้าถึง
+การใช้งาน หากต้องการแก้ไขไฟล์ต้องเปลี่ยนสิทธิ์เป็น root ก่อน
 
 การสร้าง Service tomcat
 
@@ -142,12 +144,13 @@ Created symlink /etc/systemd/system/multi-user.target.wants/tomcat.service → /
 ~~~
 $ sudo systemctl start tomcat
 ~~~
-#หมายเหตุ
+## หมายเหตุ
+
 คำสั่ง systemctl enable เป็นคำสั่งให้ service ทำงานทุกครั้งหลังจาก reboot เครื่อง
 
 คำสั่ง systemctl start ใช้ในการ เปิดใช้งาน tomcat
 
-#คำสั่งใช้งาน Service เพิ่มเติมเติม
+คำสั่งใช้งาน Service เพิ่มเติมเติม
 
 คำสั่งใช้ restart tomcat หลังจากมีการตั้งค่าไฟล์.XML
 ~~~
