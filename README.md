@@ -150,7 +150,7 @@ $ sudo systemctl daemon-reload
 ~~~
 $ sudo chown -R tomcat:tomcat /opt/tomcat/
 ~~~
-1.4 จากนั้นพิมพ์คำสั่งที่ใช้ในการเปิดใช้งาน Tomcat
+1.4 จากนั้นพิมพ์คำสั่งเปิดใช้งาน Tomcat
 ~~~
 $ sudo systemctl enable tomcat
 ~~~
