@@ -22,7 +22,7 @@ OpenJDK Runtime Environment (build 11.0.9.1+1-Ubuntu-0ubuntu1.20.04)
 OpenJDK 64-Bit Server VM (build 11.0.9.1+1-Ubuntu-0ubuntu1.20.04, mixed mode, sh                                                                             
 ~~~
 
-ขั้นตอนการดาวน์โหลดและติดตั้งและ Tomcat
+## ขั้นตอนการดาวน์โหลดและติดตั้งและ Tomcat
 
 พิมพ์คำสั่งเพื่อดาวน์โหลดไฟล์ Tomcat
 ~~~
@@ -39,37 +39,33 @@ Saving to: ‘apache-tomcat-9.0.41.tar.gz’
 apache-tomcat-9.0.4 100%[===================>]  10.91M  4.87MB/s    in 2.2s
 2020-12-15 07:45:51 (4.87 MB/s) - ‘apache-tomcat-9.0.41.tar.gz’ saved [11442169/11442169]
 ~~~
-## หมายเหตุ
+### หมายเหตุ
 ไฟล์ apache-tomcat จาก url ที่ผู้ทำคู่มือดาวน์โหลดมาใช้ อาจจะมีการอัพเดตเวอร์ชันของ tomcat ใหม่ได้
 หากไม่สามารถดาวน์โหลดไฟล์ได้ ให้เข้า url เพื่อเปลี่ยนเวอร์ชั่น
 https://downloads.apache.org/tomcat/tomcat-9/ > v9.0.41 > bin > ไฟล์ Tomcat ตามที่ต้องการ
 เช่น https://downloads.apache.org/tomcat/tomcat-9/v9.0.41/bin/apache-tomcat9.0.41.tar.gz
 
-หลังจากดาวน์โหลดไฟล์ tomcat พิมพ์คำสั่งเพื่อสร้างโฟลเดอร์ tomcat เพื่อใช้ย้ายไฟล์
-~~~
-$ sudo mkdir /opt/tomcat
-~~~
 พิมพ์คำสั่งเพื่อแตกไฟล์ และ ย้ายไฟล์ไปยัง Path ที่สร้างโฟลเดอร์ไว้
 ~~~
-$ tar xzf apache-tomcat-9.0.41.tar.gz
-$ sudo mv apache-tomcat-9.0.41/* /opt/tomcat/
+$ sudo tar xzf apache-tomcat-9.0.41.tar.gz
+$ sudo mv apache-tomcat-9.0.41 /opt/tomcat/
 ~~~
 ทำการ Create user tomcat โดยพิมพ์คำสั่ง
 ~~~
-sudo useradd -m -d /opt/tomcat -U -s /bin/false tomcat
+$ sudo useradd -m -d /opt/tomcat -U -s /bin/false tomcat
 ~~~
-## หมายเหตุ
-หากแสดงข้อความด้านล่าง usrer ได้ถูกสร้างไว้แล้วหรือมีอยู่แล้ว
+### หมายเหตุ
+หากแสดงข้อความด้านล่าง user ได้ถูกสร้างไว้แล้วหรือมีอยู่แล้ว
 ~~~
 useradd: warning: the home directory /opt/tomcat already exists.
 useradd: Not copying any file from skel directory into it.
 ~~~
 
-การตั้งค่าไฟล์ XML ต่างๆ
+# การตั้งค่าไฟล์ XML ต่างๆ
 
 สร้าง user ในการเข้าใช้ tomcat (ใช้ในการ Login เข้าใช้หน้าเว็ปไซต์ของ tomcat)
 ~~~
-sudo vi /opt/tomcat/conf/tomcat-users.xml
+$ sudo vi /opt/tomcat/conf/tomcat-users.xml
 ~~~
 แก้ไขไฟล์โดยเพิ่ม
 ~~~xml
@@ -83,7 +79,7 @@ sudo vi /opt/tomcat/conf/tomcat-users.xml
 
 ไปที่ Path ไฟล์
 ~~~
-sudo vi /opt/tomcat/webapps/host-manager/META-INF/context.xml
+$ sudo vi /opt/tomcat/webapps/host-manager/META-INF/context.xml
 ~~~
 แก้ไขไฟล์โดยเพิ่ม
 ~~~xml
@@ -95,7 +91,7 @@ sudo vi /opt/tomcat/webapps/host-manager/META-INF/context.xml
 ~~~
 ไปที่ Path ไฟล์
 ~~~
-sudo vi /opt/tomcat/webapps/manager/META-INF/context.xml
+$ sudo vi /opt/tomcat/webapps/manager/META-INF/context.xml
 ~~~
 แก้ไขไฟล์โดยเพิ่ม
 ~~~xml
@@ -104,6 +100,8 @@ sudo vi /opt/tomcat/webapps/manager/META-INF/context.xml
   <Valve className="org.apache.catalina.valves.RemoteAddrValve" allow="^.*$" />
   <Manager sessionAttributeValueClassNameFilter="java\.lang\.(?:Boolean|Integer|Long|Number|String)|org\.apache\.catalina\.filters\.CsrfPreventionFilter\$LruCache(?:\$1)?       |java\.util\.(?:Linked)?HashMap"/>
   </Context>
+  
+
 ~~~
 ## หมายเหตุ
 - หากไม่ได้แก้ไขไฟล์ context.xml ที่อยู่ใน host-manager กับ manager
@@ -168,9 +166,9 @@ $ sudo systemctl start tomcat
 
 คำสั่ง systemctl start ใช้ในการ เปิดใช้งาน tomcat
 
-## คำสั่งใช้งาน Service เพิ่มเติมเติม
+## คำสั่งใช้งาน Service เพิ่มเติม
 
-คำสั่งใช้ restart tomcat หลังจากมีการตั้งค่าไฟล์.XML
+คำสั่งใช้ restart tomcat หลังจากมีการตั้งค่าไฟล์ .xml
 ~~~
 $ sudo systemctl restart tomcat
 ~~~
