@@ -2,8 +2,7 @@
 By Command Linux Ubuntu 20.04 LTS
 
 ## Start
-
-ขั้นตอนการลง Java-JDK
+## ขั้นตอนการลง Java-JDK
 
 1.พิมพ์คำสั่งเพื่อ ทำการติดตั้ง Java (Apache tomcat จำเป็นต้องใช้ Java ในการทำงานที่สูงกว่าเวอร์ชัน 8 ขึ้นไป)
 
