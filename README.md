@@ -50,10 +50,12 @@ $ sudo mv apache-tomcat-9.0.41 /opt/tomcat/
 ~~~
 ทำการ Create user tomcat โดยพิมพ์คำสั่ง
 ~~~
-$ sudo useradd -m -d /opt/tomcat -U -s /bin/false tomcat
+$ sudo useradd -m -d /opt/tomcat tomcat
 ~~~
 ### หมายเหตุ
 หากแสดงข้อความด้านล่าง user ได้ถูกสร้างไว้แล้วหรือมีอยู่แล้ว
+-m หมายถึง
+-d หมายถึง
 ~~~
 useradd: warning: the home directory /opt/tomcat already exists.
 useradd: Not copying any file from skel directory into it.
