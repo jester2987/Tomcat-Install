@@ -1,7 +1,7 @@
 # Apache Tomcat9 Install
 By Command Linux Ubuntu 20.04 LTS
 
-## Start
+
 ## ขั้นตอนการลง Java-JDK
 
 1.พิมพ์คำสั่งเพื่อ ทำการติดตั้ง Java (Apache tomcat จำเป็นต้องใช้ Java ในการทำงานที่สูงกว่าเวอร์ชัน 8 ขึ้นไป)
@@ -54,7 +54,7 @@ $ sudo useradd tomcat
 ~~~
 user tomcat ใช้ในการเรียกใช้ไฟล์ต่างๆที่อยู่ภายใต้ directory ของ tomcat เช่น การเรียกใช้คำสั่ง service ต่างๆ
 
-# การตั้งค่าไฟล์ XML ต่างๆ
+## การตั้งค่าไฟล์ XML ต่างๆ
 
 1.สร้าง user ในการเข้าใช้ tomcat (ใช้ในการ Login เข้าใช้หน้าเว็บไซต์ของ tomcat)
 ~~~
