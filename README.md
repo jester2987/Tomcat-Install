@@ -48,14 +48,12 @@ https://downloads.apache.org/tomcat/tomcat-9/ > v9.0.41 > bin > ไฟล์ Tom
 $ sudo tar xzf apache-tomcat-9.0.41.tar.gz
 $ sudo mv apache-tomcat-9.0.41 /opt/tomcat/
 ~~~
-ทำการ Create user tomcat โดยพิมพ์คำสั่ง
+จากนั้น Create user tomcat โดยพิมพ์คำสั่ง
 ~~~
-$ sudo useradd -m -d /opt/tomcat tomcat
+$ sudo useradd tomcat
 ~~~
 ### หมายเหตุ
 หากแสดงข้อความด้านล่าง user ได้ถูกสร้างไว้แล้วหรือมีอยู่แล้ว
--m หมายถึง
--d หมายถึง
 ~~~
 useradd: warning: the home directory /opt/tomcat already exists.
 useradd: Not copying any file from skel directory into it.
@@ -67,7 +65,7 @@ useradd: Not copying any file from skel directory into it.
 ~~~
 $ sudo vi /opt/tomcat/conf/tomcat-users.xml
 ~~~
-1.1 แก้ไขไฟล์โดยเพิ่ม
+1.1 โดยเพิ่ม
 ~~~xml
     <role rolename="manager-gui" />
     <user username="ชื่อuser" password="รหัสผ่านที่ต้องการ" roles="manager-gui" />
@@ -82,7 +80,6 @@ $ sudo vi /opt/tomcat/conf/tomcat-users.xml
 $ sudo vi /opt/tomcat/webapps/host-manager/META-INF/context.xml
 ~~~
 2.2 แก้ไขไฟล์ในส่วนของ allow จาก "127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1"
-
 ~~~xml
   <Valve className="org.apache.catalina.valves.RemoteAddrValve"
     allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1" />
@@ -94,7 +91,7 @@ $ sudo vi /opt/tomcat/webapps/host-manager/META-INF/context.xml
   <Valve className="org.apache.catalina.valves.RemoteAddrValve" allow="^.*$" />
 ~~~
 
-3.ไปที่ Path ไฟล์
+3.จากนั้นไปที่ Path ไฟล์
 ~~~
 $ sudo vi /opt/tomcat/webapps/manager/META-INF/context.xml
 ~~~
