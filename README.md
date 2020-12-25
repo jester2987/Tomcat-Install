@@ -163,6 +163,9 @@ Created symlink /etc/systemd/system/multi-user.target.wants/tomcat.service → /
 ~~~
 $ sudo systemctl start tomcat
 ~~~
+1.6 จากนั้นพิมพ์ IP ของเครื่องตามด้วย Port 8080 เพื่อเข้าเว็บไซต์ของ tomcat
+เช่น: 192.168.88.141:8080
+
 ### หมายเหตุ
 
 คำสั่ง systemctl enable เป็นคำสั่งให้ service ทำงานทุกครั้งหลังจาก reboot เครื่อง
