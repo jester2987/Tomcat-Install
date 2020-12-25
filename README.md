@@ -159,7 +159,7 @@ $ sudo systemctl enable tomcat
 ~~~
 Created symlink /etc/systemd/system/multi-user.target.wants/tomcat.service → /etc/systemd/system/tomcat.service.
 ~~~
-1.5 พิมพ์คำสั่งเพื่อเปิดการใชงาน tomcat
+1.5 พิมพ์คำสั่งเพื่อเปิดการใช้งาน tomcat
 ~~~
 $ sudo systemctl start tomcat
 ~~~
