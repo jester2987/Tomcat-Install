@@ -26,7 +26,7 @@ OpenJDK 64-Bit Server VM (build 11.0.9.1+1-Ubuntu-0ubuntu1.20.04, mixed mode, sh
 ~~~
 $ wget https://downloads.apache.org/tomcat/tomcat-9/v9.0.41/bin/apache-tomcat-9.0.41.tar.gz
 ~~~
-หลังจากดาวน์โหลดไฟล์ tomcat เสร็จจะโชว์คำสั่ง
+จะแสดง
 ~~~
 --2020-12-15 07:45:48--  https://downloads.apache.org/tomcat/tomcat-9/v9.0.41/bin/apache-tomcat9.0.41.tar.gz
 Resolving downloads.apache.org (downloads.apache.org)... 88.99.95.219, 2a01:4f8:10a:201a::2
@@ -38,7 +38,7 @@ apache-tomcat-9.0.4 100%[===================>]  10.91M  4.87MB/s    in 2.2s
 2020-12-15 07:45:51 (4.87 MB/s) - ‘apache-tomcat-9.0.41.tar.gz’ saved [11442169/11442169]
 ~~~
 ### หมายเหตุ
-ไฟล์ apache-tomcat จาก url ที่ผู้ทำคู่มือดาวน์โหลดมาใช้ อาจจะมีการอัพเดตเวอร์ชันของ tomcat ใหม่ได้
+ไฟล์ apache-tomcat จาก url ที่ผู้ทำคู่มือดาวน์โหลดมาใช้ อาจจะมีการอับเดตเวอร์ชันของ tomcat ใหม่ได้
 หากไม่สามารถดาวน์โหลดไฟล์ได้ ให้เข้า url เพื่อเปลี่ยนเวอร์ชั่น
 https://downloads.apache.org/tomcat/tomcat-9/ > v9.0.41 > bin > ไฟล์ Tomcat ตามที่ต้องการ
 เช่น https://downloads.apache.org/tomcat/tomcat-9/v9.0.41/bin/apache-tomcat9.0.41.tar.gz
@@ -48,21 +48,15 @@ https://downloads.apache.org/tomcat/tomcat-9/ > v9.0.41 > bin > ไฟล์ Tom
 $ sudo tar xzf apache-tomcat-9.0.41.tar.gz
 $ sudo mv apache-tomcat-9.0.41 /opt/tomcat/
 ~~~
-จากนั้น Create user tomcat โดยพิมพ์คำสั่ง
+Create user tomcat โดยพิมพ์คำสั่ง
 ~~~
 $ sudo useradd tomcat
-~~~
-### หมายเหตุ
-หากแสดงข้อความด้านล่าง user ได้ถูกสร้างไว้แล้วหรือมีอยู่แล้ว
-~~~
-useradd: warning: the home directory /opt/tomcat already exists.
-useradd: Not copying any file from skel directory into it.
 ~~~
 user tomcat ใช้ในการเรียกใช้ไฟล์ต่างๆที่อยู่ภายใต้ directory ของ tomcat เช่น การเรียกใช้คำสั่ง service ต่างๆ
 
 # การตั้งค่าไฟล์ XML ต่างๆ
 
-1.สร้าง user ในการเข้าใช้ tomcat (ใช้ในการ Login เข้าใช้หน้าเว็ปไซต์ของ tomcat)
+1.สร้าง user ในการเข้าใช้ tomcat (ใช้ในการ Login เข้าใช้หน้าเว็บไซต์ของ tomcat)
 ~~~
 $ sudo vi /opt/tomcat/conf/tomcat-users.xml
 ~~~
@@ -74,7 +68,7 @@ $ sudo vi /opt/tomcat/conf/tomcat-users.xml
     <user username="ชื่อuser" password="รหัสผ่านที่ต้องการ" roles="manager-gui,admin-gui" />
 ~~~
 
-2.การตั้งค่าไฟล์ manager และ host-manager
+2.การตั้งค่าไฟล์ manager
 
 2.1 ไปที่ Path ไฟล์
 ~~~
@@ -92,12 +86,14 @@ $ sudo vi /opt/tomcat/webapps/host-manager/META-INF/context.xml
   <Valve className="org.apache.catalina.valves.RemoteAddrValve" allow="^.*$" />
 ~~~
 
-3.จากนั้นไปที่ Path ไฟล์
+3.ตั้งค่าไฟล์ host-manager
+
+2.1 ไปที่ Path ไฟล์
 ~~~
 $ sudo vi /opt/tomcat/webapps/manager/META-INF/context.xml
 ~~~
 
-3.1 แก้ไขไฟล์ในส่วนของ allow จาก "127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1"
+3.2 แก้ไขไฟล์ในส่วนของ allow จาก "127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1"
 
 ~~~xml
   <Valve className="org.apache.catalina.valves.RemoteAddrValve"
