@@ -88,7 +88,7 @@ $ sudo vi /opt/tomcat/webapps/host-manager/META-INF/context.xml
 
 3.ตั้งค่าไฟล์ host-manager
 
-2.1 ไปที่ Path ไฟล์
+3.1 ไปที่ Path ไฟล์
 ~~~
 $ sudo vi /opt/tomcat/webapps/manager/META-INF/context.xml
 ~~~
