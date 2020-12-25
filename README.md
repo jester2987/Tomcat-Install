@@ -58,6 +58,7 @@ $ sudo useradd tomcat
 useradd: warning: the home directory /opt/tomcat already exists.
 useradd: Not copying any file from skel directory into it.
 ~~~
+user tomcat ใช้ในการเรียกใช้ไฟล์ต่างๆที่อยู่ภายใต้ directory ของ tomcat เช่น การเรียกใช้คำสั่ง service ต่างๆ
 
 # การตั้งค่าไฟล์ XML ต่างๆ
 
