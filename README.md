@@ -60,7 +60,7 @@ user tomcat ใช้ในการเรียกใช้ไฟล์ต่�
 ~~~
 $ sudo vi /opt/tomcat/conf/tomcat-users.xml
 ~~~
-1.1 โดยเพิ่ม ภายใต้ "</tomcat-users>"
+1.1 โดยเพิ่ม ภายใต้ /tomcat-user
 ~~~xml
     <role rolename="manager-gui" />
     <user username="ชื่อuser" password="รหัสผ่านที่ต้องการ" roles="manager-gui" />
