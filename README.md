@@ -93,14 +93,14 @@ $ sudo vi /opt/tomcat/webapps/host-manager/META-INF/context.xml
 $ sudo vi /opt/tomcat/webapps/manager/META-INF/context.xml
 ~~~
 
-3.2 ทำการเพิ่ม Regular expression ที่ใช้สำหรับเรียกใช้งาน Tomcat ได้จากทุก IP Addresses จากภายนอกโดยเพิ่ม "^.*$" แทน "127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1"
+3.2 แก้ไขไฟล์ในส่วนของ allow จาก "127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1"
 
 ~~~xml
   <Valve className="org.apache.catalina.valves.RemoteAddrValve"
     allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1" />
 ~~~
 
-3.2 ทำการเพิ่ม Regular expression ที่ใช้สำหรับเรียกใช้งาน Tomcat ได้จาก Ip ภายนอกโดยเพิ่ม "^.*$" แทน "127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1"
+3.2 ทำการเพิ่ม Regular expression ที่ใช้สำหรับเรียกใช้งาน Tomcat ได้จากทุก IP Addresses จากภายนอกโดยเพิ่ม "^.*$" แทน "127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1"
 
 ~~~xml
   <Valve className="org.apache.catalina.valves.RemoteAddrValve" allow="^.*$" />
