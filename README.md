@@ -80,7 +80,7 @@ $ sudo vi /opt/tomcat/webapps/host-manager/META-INF/context.xml
     allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1" />
 ~~~
 
-2.3 ทำการเพิ่ม Regular expression ที่ใช้สำหรับเรียกใช้งาน Tomcat ได้จาก Ip ภายนอกโดยเพิ่ม "^.*$" แทน "127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1"
+2.3 ทำการเพิ่ม Regular expression ที่ใช้สำหรับเรียกใช้งาน Tomcat ได้จากทุก IP Addresses จากภายนอกโดยเพิ่ม "^.*$" แทน "127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1"
 
 ~~~xml
   <Valve className="org.apache.catalina.valves.RemoteAddrValve" allow="^.*$" />
@@ -93,7 +93,7 @@ $ sudo vi /opt/tomcat/webapps/host-manager/META-INF/context.xml
 $ sudo vi /opt/tomcat/webapps/manager/META-INF/context.xml
 ~~~
 
-3.2 แก้ไขไฟล์ในส่วนของ allow จาก "127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1"
+3.2 ทำการเพิ่ม Regular expression ที่ใช้สำหรับเรียกใช้งาน Tomcat ได้จากทุก IP Addresses จากภายนอกโดยเพิ่ม "^.*$" แทน "127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1"
 
 ~~~xml
   <Valve className="org.apache.catalina.valves.RemoteAddrValve"
@@ -111,7 +111,11 @@ $ sudo vi /opt/tomcat/webapps/manager/META-INF/context.xml
 จะไม่สามารถเข้าเมนู Manager App และ Host Manager ได้จากภายนอก
 - การแก้ไขไฟล์ .xml ต่างๆ หรือ การเข้า Path ไฟล์ต่างๆ อาจมีการติดสิทธิ์การเข้าถึง
 การใช้งาน หากต้องการแก้ไขไฟล์ต้องเปลี่ยนสิทธิ์เป็น root ก่อน
-
+- สามารถ กำหนด IP Addresses ที่ใช้เข้าใช้งาน Tomcat เฉพาะเจาะจงได้เช่นกัน เช่น 
+~~~
+<Valve className="org.apache.catalina.valves.RemoteAddrValve"
+         allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1|YOUR.IP.ADDRESS.HERE" />
+~~~              
 ## การสร้าง Service tomcat
 
 1.พิมพ์คำสั่งเพื่อสร้างไฟล์ tomcat.service เพื่อเรียกใช้งาน tomcat
