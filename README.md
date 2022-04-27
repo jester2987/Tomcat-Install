@@ -24,29 +24,29 @@ OpenJDK 64-Bit Server VM (build 11.0.9.1+1-Ubuntu-0ubuntu1.20.04, mixed mode, sh
 
 พิมพ์คำสั่งเพื่อดาวน์โหลดไฟล์ Tomcat
 ~~~
-$ wget https://downloads.apache.org/tomcat/tomcat-9/v9.0.41/bin/apache-tomcat-9.0.41.tar.gz
+$ wget https://downloads.apache.org/tomcat/tomcat-9/v9.0.62/bin/apache-tomcat-9.0.62.tar.gz
 ~~~
 จะแสดง
 ~~~
---2020-12-15 07:45:48--  https://downloads.apache.org/tomcat/tomcat-9/v9.0.41/bin/apache-tomcat9.0.41.tar.gz
+--2020-12-15 07:45:48--  https://downloads.apache.org/tomcat/tomcat-9/v9.0.62/bin/apache-tomcat-9.0.62.tar.gz
 Resolving downloads.apache.org (downloads.apache.org)... 88.99.95.219, 2a01:4f8:10a:201a::2
 Connecting to downloads.apache.org (downloads.apache.org)|88.99.95.219|:443... connected.
 HTTP request sent, awaiting response... 200 OK
 Length: 11442169 (11M) [application/x-gzip]
-Saving to: ‘apache-tomcat-9.0.41.tar.gz’
+Saving to: ‘apache-tomcat-9.0.62.tar.gz’
 apache-tomcat-9.0.4 100%[===================>]  10.91M  4.87MB/s    in 2.2s
-2020-12-15 07:45:51 (4.87 MB/s) - ‘apache-tomcat-9.0.41.tar.gz’ saved [11442169/11442169]
+2020-12-15 07:45:51 (4.87 MB/s) - ‘apache-tomcat-9.0.62.tar.gz’ saved [11442169/11442169]
 ~~~
 ### หมายเหตุ
 ไฟล์ apache-tomcat จาก url ที่ผู้ทำคู่มือดาวน์โหลดมาใช้ อาจจะมีการอับเดตเวอร์ชันของ tomcat ใหม่ได้
 หากไม่สามารถดาวน์โหลดไฟล์ได้ ให้เข้า url เพื่อเปลี่ยนเวอร์ชั่น
-https://downloads.apache.org/tomcat/tomcat-9/ > v9.0.41 > bin > ไฟล์ Tomcat ตามที่ต้องการ
-เช่น https://downloads.apache.org/tomcat/tomcat-9/v9.0.41/bin/apache-tomcat9.0.41.tar.gz
+https://downloads.apache.org/tomcat/ สามารถเลือกไฟล์ Tomcat ตามที่ต้องการ
+เช่น https://downloads.apache.org/tomcat/tomcat-9/v9.0.62/bin/apache-tomcat-9.0.62.tar.gz
 
 พิมพ์คำสั่งเพื่อแตกไฟล์ และ ย้ายไฟล์ไปยัง Path ที่สร้างโฟลเดอร์ไว้
 ~~~
-$ sudo tar xzf apache-tomcat-9.0.41.tar.gz
-$ sudo mv apache-tomcat-9.0.41 /opt/tomcat/
+$ sudo tar xzf apache-tomcat-9.0.62.tar.gz
+$ sudo mv apache-tomcat-9.0.62.tar.gz /opt/tomcat/
 ~~~
 Create user tomcat โดยพิมพ์คำสั่ง
 ~~~
