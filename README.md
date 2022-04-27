@@ -34,7 +34,7 @@ Connecting to downloads.apache.org (downloads.apache.org)|88.99.95.219|:443... c
 HTTP request sent, awaiting response... 200 OK
 Length: 11442169 (11M) [application/x-gzip]
 Saving to: ‘apache-tomcat-9.0.62.tar.gz’
-apache-tomcat-9.0.4 100%[===================>]  10.91M  4.87MB/s    in 2.2s
+apache-tomcat--9.0.62 100%[===================>]  10.91M  4.87MB/s    in 2.2s
 2020-12-15 07:45:51 (4.87 MB/s) - ‘apache-tomcat-9.0.62.tar.gz’ saved [11442169/11442169]
 ~~~
 ### หมายเหตุ
@@ -80,7 +80,7 @@ $ sudo vi /opt/tomcat/webapps/host-manager/META-INF/context.xml
     allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1" />
 ~~~
 
-2.3 เป็น "^.*$"
+2.3 ทำการเพิ่ม Regular expression ที่ใช้สำหรับเรียกใช้งาน Tomcat ได้จาก Ip ภายนอกโดยเพิ่ม "^.*$" แทน "127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1"
 
 ~~~xml
   <Valve className="org.apache.catalina.valves.RemoteAddrValve" allow="^.*$" />
@@ -100,7 +100,7 @@ $ sudo vi /opt/tomcat/webapps/manager/META-INF/context.xml
     allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1" />
 ~~~
 
-3.2 เป็น "^.*$"
+3.2 ทำการเพิ่ม Regular expression ที่ใช้สำหรับเรียกใช้งาน Tomcat ได้จาก Ip ภายนอกโดยเพิ่ม "^.*$" แทน "127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1"
 
 ~~~xml
   <Valve className="org.apache.catalina.valves.RemoteAddrValve" allow="^.*$" />
